@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CountryMainReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<template><![CDATA["C:\\Jasper\\page\\ReportStyles.jrtx"]]></template>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Jasper\\page\\"]]></defaultValueExpression>
+	</parameter>
+	<field name="country" class="java.lang.String"/>
+	<field name="states" class="java.util.List"/>
+	<field name="language" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<staticText>
+				<reportElement style="LabelStyle" positionType="Float" x="0" y="0" width="125" height="25"/>
+				<textElement/>
+				<text><![CDATA[Country]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="TextFieldStyle" positionType="Float" x="125" y="0" width="205" height="25"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{country}]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="25" width="330" height="25"/>
+				<staticText>
+					<reportElement style="LabelStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25"/>
+					<textElement/>
+					<text><![CDATA[States]]></text>
+				</staticText>
+				<subreport>
+					<reportElement x="125" y="0" width="205" height="25"/>
+					<subreportParameter name="states">
+						<subreportParameterExpression><![CDATA[$F{states}]]></subreportParameterExpression>
+					</subreportParameter>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{states})]]></dataSourceExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "StatesReport.jasper"]]></subreportExpression>
+				</subreport>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="0" y="50" width="330" height="25"/>
+				<staticText>
+					<reportElement style="LabelStyle" positionType="Float" x="0" y="0" width="125" height="25"/>
+					<textElement/>
+					<text><![CDATA[Language]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="TextFieldStyle" positionType="Float" x="125" y="0" width="205" height="25"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{language}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
